@@ -20,11 +20,11 @@ ENV VERSION ${VERSION}
 
 ENV REFRESHED_AT ${DATE}
 
-USER _build
-WORKDIR /opt/aur-watchman
-
 # Populate watchman pkg spec
 COPY --chown=_build:_build aur-watchman/ /opt/aur-watchman/
+
+USER _build
+WORKDIR /opt/aur-watchman
 
 # Build the package
 CMD [ "/usr/bin/makepkg", "--clean", "--needed", "--noconfirm", "--rmdeps", "--skippgpcheck", "--syncdeps" ]
